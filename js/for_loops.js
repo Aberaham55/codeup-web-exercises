@@ -22,6 +22,9 @@
 //         console.log(random + " is Odd");
 //     }
 // }
-for (let i = 1; i < 10; i++) {
-    console.log(("" + i).repeat(i));
-}
+//for (let i = 1; i < 10; i++) {
+  //  console.log(("" + i).repeat(i));
+//}
+//for (let i = 100; i >= 5; i = i - 5) {
+   // console.log(i);
+//}
