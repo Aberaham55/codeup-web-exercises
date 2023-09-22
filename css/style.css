@@ -1,3 +1,39 @@
 .fancy-header {
-    color: purple;
+    color: lightgrey;
+    text-align: center;
+}
+.header {
+    text-decoration: underline;
+    color: darkorange;
+}
+body {
+    background-image: url("/img/robot.hand.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+li {
+    list-style:none;
+}
+body {
+    font-family: serif;
+}
+#plan {
+    text-align:left;
+    text-decoration: underline;
+}
+#price {
+    text-align: center;
+    text-decoration: underline;
+}
+#features {
+    text-align: center;
+    text-decoration: underline;
+}
+a:hover {
+    color:black;
+}
+#first-p {
+    text-align: center;
+    text-decoration: underline;
+    color: black;
 }
