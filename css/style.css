@@ -10,6 +10,7 @@ body {
     background-image: url("/img/robot.hand.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: unset;
 }
 li {
     list-style:none;
