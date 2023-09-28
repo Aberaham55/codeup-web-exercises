@@ -65,7 +65,7 @@ fieldset {
     padding: 8px;
     color: #ffffff;
     font-weight: bold;
-    border: 1px #d3d3d3;
+    border: 1px solid #d3d3d3;
 }
 
 .form-control {
@@ -75,7 +75,7 @@ fieldset {
     /* It should have a separation of .5em from elements on top of it and below it */
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    width: calc(100% - 5px);
+    width: calc(100% - 4px);
 
     /* You'll need to use the `calc` function to make the width of this element match the width of the button */
     /* See the example at: https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
