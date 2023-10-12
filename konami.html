@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<script>
+    "use strict";
+    let keysPressed = "";
+    const code = ("ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightabEnter");
+    document.addEventListener("keyup",function(event) {
+        keysPressed += event.key;
+        console.log(keysPressed);
+        if (keysPressed.includes(code)) {
+            alert("got it ");
+            document.querySelector("body").style.backgroundImage = 'url("img/robot.hand.jpg")';
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>

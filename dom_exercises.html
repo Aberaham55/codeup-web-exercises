@@ -36,15 +36,19 @@
         this.style.fontSize = "18px";})
     changeFontSize.addEventListener("click", function (){
         this.style.fontSize = "unset";})
-    const addColor = document.querySelector("li");
-    addColor.addEventListener("mouseenter", function (){
-        this.style.color = "red";})
-    addColor.addEventListener("mouseleave", function (){
-        this.style.color = "unset";})
+    const allLis = document.querySelectorAll("li");
+        for (let i = 0; i < allLis.length; i++) {
+            allLis[i].addEventListener("mouseenter", function (){
+            this.style.color = "red";})
+            allLis[i].addEventListener("mouseleave", function (){
+            this.style.color = "unset";})
+        }
 
 
 
 
+    // allLis.addEventListener("mouseleave", function (){
+    //     this.style.color = "unset";})
 </script>
 </body>
 </html>
