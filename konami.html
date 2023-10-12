@@ -5,17 +5,24 @@
 </head>
 <body>
 <h1>Konami Code</h1>
-
+<audio id="contra" controls style="display: none" type="audio/mpeg">
+    <source src="Audio/01%20Contra.mp3">
+</audio>
 <script>
     "use strict";
-    let keysPressed = "";
-    const code = ("ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightabEnter");
-    document.addEventListener("keyup",function(event) {
+        let keysPressed = "";
+        const code =("ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightabEnter");
+        document.addEventListener("keyup",function(event) {
         keysPressed += event.key;
         console.log(keysPressed);
         if (keysPressed.includes(code)) {
             alert("got it ");
-            document.querySelector("body").style.backgroundImage = 'url("img/robot.hand.jpg")';
+            document.querySelector("body").style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/en/6/65/Contra_cover.jpg")';}
+        if (keysPressed.includes(code)) {
+            document.querySelector("#contra").play();
+        }
+        if (keysPressed.includes(code)) {
+            document.querySelector("h1").style.display = "none";
         }
     });
 
