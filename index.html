@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document Object Model Manipulation Assessment</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    section {
+      margin-top: 25px;
+    }
+    .border {
+      border: 2px solid darkgray;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .sans-serif {
+      font-family: sans-serif;
+    }
+    .go-big {
+      font-size: 200%;
+    }
+    li {
+      list-style-type: none;
+    }
+    li button {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1 id="main-heading">DOM</h1>
+</header>
+<button id="change-heading">Change Header</button>
+<section>
+  <input type="text" id="userInput">
+  <button id="getInput">Get Input</button>
+  <p id="showInput"></p>
+</section>
+<section class="border" id="changes">
+  <h2>Information</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid debitis earum harum, in, ipsum, itaque labore laborum molestias nihil numquam officia perspiciatis qui quidem repellat sit voluptatibus? Dolor, earum?</p>
+</section>
+<section class="border" id="serifChanger">
+  <h2>Go away, serifs</h2>
+</section>
+<section id="moreParagraphs">
+  <button id="newParagraph">New Paragraph</button>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda enim hic illum impedit ipsa iure mollitia nam possimus quae qui? Atque dolores laudantium, minus officiis pariatur quo repellendus soluta ullam.</p>
+</section>
+<section class="border" id="big-and-small">
+  <h2>Back and Forth</h2>
+</section>
+<section id="image">
+  <p><img src="img/logo.png" alt="codeup logo"></p>
+</section>
+<section>
+  <ul>
+    <li><button>Click Me</button></li>
+    <li><button>Click Me</button></li>
+    <li><button>Click Me</button></li>
+    <li><button>Click Me</button></li>
+    <li><button>Click Me</button></li>
+  </ul>
+  <ul>
+    <li><p>Change Me</p></li>
+    <li><p>Change Me</p></li>
+    <li><p>Change Me</p></li>
+    <li><p>Change Me</p></li>
+    <li><p>Change Me</p></li>
+  </ul>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+</body>
+</html>
