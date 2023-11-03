@@ -1,14 +1,73 @@
-// TO MAKE THE MAP APPEAR YOU MUST
-// ADD YOUR ACCESS TOKEN FROM
-// https://account.mapbox.com
-// mapboxgl.accessToken = MAPBOX_API_KEY;
-// const map = new mapboxgl.Map({
-//     container: 'map', // container ID
-//     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-//     style: 'mapbox://styles/mapbox/streets-v12', // style URL
-//     center: [-74.5, 40], // starting position [lng, lat]
-//     zoom: 9 // starting zoom
-// });
+
+mapboxgl.accessToken = MAPBOX_API_KEY;
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    zoom: 10, // starting zoom
+    center: [-98.4916, 29.4252] // [lng, lat]
+});
+let marker = new mapboxgl.Marker( {
+    draggable: true
+})
+    .setLngLat([-98.48, 29.42])
+    .addTo(map);
+
+const onDragUpdateWeather = () => {
+    const lngLat = marker.getLngLat();
+    const [lng, lat] = Object.values(lngLat);
+    // function get and loops
+    console.log([lng, lat])
+    forecastWeatherCards(lng,lat);
+}// end of function onDragEnd
+
+marker.on('dragend', onDragUpdateWeather);
+
+
+
+
+
+const weatherCardsDiv = document.querySelector('#weatherCardsDiv');
+    function forecastWeatherCards(lng, lat) {
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${OPEN_WEATHER_API_KEY}&units=imperial`)
+            .then(data => data.json())
+            .then(currentWeather => {
+                console.log(currentWeather);
+
+
+                weatherCardsDiv.innerHTML = "";
+                currentWeather.list.forEach((weather, index) => {
+
+
+                    const date = dateFromTimeStamp(weather.dt);
+                    const day = getDayNameByDate(weather.dt);
+                    const temp = weather.main.temp;
+                    const highTemp = weather.main.temp_max;
+                    const lowTemp = weather.main.temp_min;
+                    const description = weather.weather[0].description;
+                    // const icon = weather.weather[0].icon;
+                    const windSpeed = weather.wind.speed;
+                    const feelsLike = weather.main.feels_like;
+
+
+                    if (index % 8 === 0) {
+                        const cardDiv = document.createElement("div");
+                        cardDiv.classList.add('card');
+                        cardDiv.innerHTML = `
+                          <div class="card-body">
+                          <h5 class="card-title">${day}, ${date}</h5>
+                          <p class="main-temp">${temp}</p>    
+                          <p class="card-text"> L: ${lowTemp}°F / H: ${highTemp}°F</p>
+                          <p class="card-text"><small class="text-body-secondary">Feels Like: ${feelsLike}°F</small></p>
+                          <p class="card-text">WS: ${windSpeed} mph</p>
+                          <p class="card-text">${description}</p>
+                      </div>
+                  
+                  `;
+
+                        weatherCardsDiv.appendChild(cardDiv);
+                    }
+                })
+            })} forecastWeatherCards();
 
 
 
@@ -16,50 +75,9 @@
 
 
 
-fetch(`https://api.openweathermap.org/data/2.5/weather?` +
-    `lat=29.426825118534886&lon=-98.48948239256946` + `&appid=${OPEN_WEATHER_API_KEY}&units=imperial`)
-    .then( data => data.json())
-    .then( currentWeather => console.log(currentWeather));
 
 
-    // const weatherOutput = document.querySelector("#forecast");
-    // const weatherData = document.querySelector("#insert-weather");
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?` +
-      `lat=29.426825118534886&lon=-98.48948239256946` +
-      `&appid=${OPEN_WEATHER_API_KEY}` +
-      `&units=imperial`)
-      .then( data => data.json())
-      .then( forecast => {
-          console.log(forecast);
-          forecast.list.forEach(weather => {
-              const weekDays = dayOfWeekFromDayAbbreviated;
-              const time = document.querySelector("#card-mon h2");
-              time.innerText = weekDays(weather.dt);
-              const temp = document.querySelector("#card-mon h3");
-              temp.innerText = "Temp:"+ " " + weather.main.temp;
-              const windSpeed = document.querySelector("#card-mon h6").nextElementSibling;
-              windSpeed.innerText = "Wind-Speed:" + " " + weather.wind.speed;
-              const feelsLike = document.querySelector("#card-mon h6");
-              feelsLike.innerText = "Feels Like" + " " +  weather.main.feels_like;
-              const humidity = document.querySelector("#card-mon span");
-              humidity.innerText = "Humidity" + " " +  weather.main.humidity;
-
-              // weatherOutput.appendChild(windSpeed);
-              // weatherOutput.appendChild(time);
-              // weatherData.appendChild(temp);
-          })
-      });
-  geocode("San Antonio, TX", MAPBOX_API_KEY).then(location => {
-      console.log(location);
-      map.setCenter(location);
-      map.setZoom(10);
-      const marker = new mapboxgl.Marker()
-          .setLngLat([-98.4916, 29.4260])
-          .addTo(map);
-      const Popup = new mapboxgl.Popup()
 
 
-      marker.setPopup(Popup);
-  });
 
 
