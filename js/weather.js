@@ -22,12 +22,24 @@ const onDragUpdateWeather = () => {
 
 marker.on('dragend', onDragUpdateWeather);
 
+// Search bar //
+const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+});
 
+map.addControl(geocoder);
 
+geocoder.on('result', function(event) {
+    let lngLat = event.result.geometry.coordinates;
+    marker.setLngLat(lngLat);
+    forecastWeatherCards(lngLat[0], lngLat[1]);
+});
+//end of search bar //
 
 
 const weatherCardsDiv = document.querySelector('#weatherCardsDiv');
-    function forecastWeatherCards(lng, lat) {
+    function forecastWeatherCards(lng = -98.48948239256946, lat = 29.426825118534886) {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${OPEN_WEATHER_API_KEY}&units=imperial`)
             .then(data => data.json())
             .then(currentWeather => {
@@ -44,7 +56,7 @@ const weatherCardsDiv = document.querySelector('#weatherCardsDiv');
                     const highTemp = weather.main.temp_max;
                     const lowTemp = weather.main.temp_min;
                     const description = weather.weather[0].description;
-                    // const icon = weather.weather[0].icon;
+                     const icon = weather.weather[0].icon;
                     const windSpeed = weather.wind.speed;
                     const feelsLike = weather.main.feels_like;
 
@@ -53,6 +65,7 @@ const weatherCardsDiv = document.querySelector('#weatherCardsDiv');
                         const cardDiv = document.createElement("div");
                         cardDiv.classList.add('card');
                         cardDiv.innerHTML = `
+                          <img src=" https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png" class="card-img-top " alt="...">
                           <div class="card-body">
                           <h5 class="card-title">${day}, ${date}</h5>
                           <p class="main-temp">${temp}</p>    
@@ -60,6 +73,7 @@ const weatherCardsDiv = document.querySelector('#weatherCardsDiv');
                           <p class="card-text"><small class="text-body-secondary">Feels Like: ${feelsLike}°F</small></p>
                           <p class="card-text">WS: ${windSpeed} mph</p>
                           <p class="card-text">${description}</p>
+                          
                       </div>
                   
                   `;

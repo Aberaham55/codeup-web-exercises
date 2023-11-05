@@ -3,25 +3,120 @@
     margin: 0;
     box-sizing: border-box;
 }
-#container {
+
+    #weather-img {
+        background-image: url("/img/weather-pic.jpg");
+        background-size: contain;
+        height: 100vh;
+        width: 100%;
+        /*background-size: contain;*/
+        /*height: 100vh;*/
+        /*width: 100%;*/
+    }
+@keyframes moveClouds {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+#weather-img {
+    background-image: url("/img/weather-pic.jpg");
+    background-size: 200% 100%;
+    animation: moveClouds 40s linear infinite;
+}
+
+
+canvas {
+
+    border: none;
+    border-radius: 7px;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+}
+body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#weatherCardsDiv {
-    height: 50%; /* This will make the div take up half of the container's height */
+
+header {
+    /* Add your header styles here */
+    height: 50px; /* Adjust this value based on the height of your header */
+}
+
+.map-container {
+
+    flex-grow: 1; /* This will make the map container take up the remaining space */
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-    bottom: 150px;
+    justify-content: center; /* This will center the map horizontally */
+    /*align-items: flex-start; !* This will align the map to the top of the container *!*/
+    padding: 0 10px; /* This will add 10px padding to the left and right of the map */
+    height: 100%;
+    width: 100%;
 
 }
 
 #map {
-    height: 100%; /* This will make the div take up the other half of the container's height */
+    position: absolute;
+    width: 100%; /* Adjust this value to control the width of the map */
+    height: 45%; /* Adjust this value to control the height of the map */
 }
 
+
+#weatherCardsDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: absolute;
+    bottom: 50px;
+    left: 200px;
+    gap: 50px;
+
+}
+.card {
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 1.0);
+
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar-brand {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.navbar-nav {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #ddd;
+}
