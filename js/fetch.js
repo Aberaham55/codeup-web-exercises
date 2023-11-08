@@ -1,4 +1,3 @@
-const GITHUB_API_KEY = "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";
 
 
 const ghOptions = {
